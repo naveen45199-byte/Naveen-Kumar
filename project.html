@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intelligent Land Record System</title>
+
+    <link rel="stylesheet" href="design.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+
+            <div>
+                <h2>LandSmart</h2>
+                <span>Land Record System</span>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" onclick="showSection('dashboard')">
+                📊 Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showSection('addRecord')">
+                ➕ Add Record
+            </button>
+
+            <button class="nav-item" onclick="showSection('records')">
+                📋 Land Records
+            </button>
+
+            <button class="nav-item" onclick="showSection('validation')">
+                ✓ Validation
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>Intelligent Land Management</p>
+            <small>Version 1.0</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+                <p>Intelligent Land Record Digitization & Validation</p>
+            </div>
+
+            <div class="user">
+                <div class="user-avatar">A</div>
+
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Land Records Officer</small>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section active">
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">📑</div>
+
+                    <div>
+                        <span>Total Records</span>
+                        <h2 id="totalRecords">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">✓</div>
+
+                    <div>
+                        <span>Valid Records</span>
+                        <h2 id="validRecords">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">⚠</div>
+
+                    <div>
+                        <span>Needs Review</span>
+                        <h2 id="reviewRecords">0</h2>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon red">!</div>
+
+                    <div>
+                        <span>Errors</span>
+                        <h2 id="errorRecords">0</h2>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <h3>Recent Land Records</h3>
+
+                        <button
+                            class="outline-btn"
+                            onclick="showSection('records')">
+                            View All
+                        </button>
+                    </div>
+
+                    <div id="recentRecords"></div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <h3>Validation Summary</h3>
+                    </div>
+
+                    <div class="validation-chart">
+
+                        <div class="progress-item">
+
+                            <div>
+                                <span>Valid</span>
+                                <strong id="validPercent">0%</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div
+                                    id="validBar"
+                                    class="progress-fill green-fill">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-item">
+
+                            <div>
+                                <span>Needs Review</span>
+                                <strong id="reviewPercent">0%</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div
+                                    id="reviewBar"
+                                    class="progress-fill orange-fill">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-item">
+
+                            <div>
+                                <span>Errors</span>
+                                <strong id="errorPercent">0%</strong>
+                            </div>
+
+                            <div class="progress">
+                                <div
+                                    id="errorBar"
+                                    class="progress-fill red-fill">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD RECORD -->
+        <section id="addRecord" class="section">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Add Land Record</h3>
+
+                        <p>
+                            Enter the details from the land document.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="landForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Owner Name *</label>
+
+                            <input
+                                type="text"
+                                id="ownerName"
+                                placeholder="Enter owner name"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Survey Number *</label>
+
+                            <input
+                                type="text"
+                                id="surveyNumber"
+                                placeholder="Example: 125/3B"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Sub-Division Number</label>
+
+                            <input
+                                type="text"
+                                id="subdivision"
+                                placeholder="Example: 3B">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Area</label>
+
+                            <input
+                                type="text"
+                                id="area"
+                                placeholder="Example: 2.45 acres">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Village *</label>
+
+                            <input
+                                type="text"
+                                id="village"
+                                placeholder="Enter village"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Taluk</label>
+
+                            <input
+                                type="text"
+                                id="taluk"
+                                placeholder="Enter taluk">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>District</label>
+
+                            <input
+                                type="text"
+                                id="district"
+                                placeholder="Enter district">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Land Type</label>
+
+                            <select id="landType">
+
+                                <option value="">
+                                    Select land type
+                                </option>
+
+                                <option value="Agricultural">
+                                    Agricultural
+                                </option>
+
+                                <option value="Residential">
+                                    Residential
+                                </option>
+
+                                <option value="Commercial">
+                                    Commercial
+                                </option>
+
+                                <option value="Government">
+                                    Government
+                                </option>
+
+                                <option value="Industrial">
+                                    Industrial
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Document</label>
+
+                        <input
+                            type="file"
+                            id="document"
+                            accept=".pdf,.jpg,.jpeg,.png">
+
+                        <small>
+                            Upload scanned land document.
+                        </small>
+
+                    </div>
+
+
+                    <div id="formMessage"></div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="reset"
+                            class="secondary-btn">
+                            Clear
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-btn">
+                            Save & Validate
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECORDS -->
+        <section id="records" class="section">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Land Records</h3>
+                        <p>Search and manage digitized records.</p>
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showSection('addRecord')">
+                        + Add Record
+                    </button>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search owner, survey number, village..."
+                        oninput="displayRecords()">
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Owner</th>
+                                <th>Survey No.</th>
+                                <th>Village</th>
+                                <th>Area</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="recordsTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- VALIDATION -->
+        <section id="validation" class="section">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Validation Center</h3>
+
+                        <p>
+                            Automatically detected validation issues.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div id="validationList"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h3>Record Details</h3>
+
+                <button onclick="closeModal()">×</button>
+
+            </div>
+
+            <div id="modalBody"></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
